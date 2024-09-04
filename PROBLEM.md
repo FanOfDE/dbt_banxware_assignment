@@ -39,7 +39,7 @@ dbt_banxware_assignment:
 
 - To test if you have sucessfully established a connection to your snowflake cluster run the `dbt debug` command from the root of the `dbt_banxware_assignment` folder.
 
-In the `banxware_assigment` folder you will find a dbt project where you will build the below requirements in the `models` folder. 
+In the `dbt_banxware_assignment` folder you will find a dbt project where you will build the below requirements in the `models` folder. 
 
 ## Relevant dbt commands
 
