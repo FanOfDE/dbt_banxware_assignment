@@ -11,11 +11,52 @@ Our company has recently launched a new product and we are looking to analyze th
 - What are the top 5 products by total sales amount in the year 2023?
 - What are the names of the top 5 customers by total sales amount in the year 2023?
 - What is the average order value for each month in the year 2023?
+- Which Customer had the highest order volume in the month of October 2023?
 
 ### Setting Up Your Environment:
 
 Create a new Snowflake account (It’s free for 30 days) and set up a database named home_assignment.
 Install dbt (data build tool) and configure it to connect to your Snowflake database.
+- For this you will need to create a `profiles.yml` file in a folder in `~/.dbt`
+- The content of this should take the following format 
+```yml
+banxware_assignment:
+  outputs:
+    dev:
+      type: SNOWFLAKE
+      threads: 4
+      account: <your_snowflake_account_details>
+      database: <snowflake_database_name>
+      user: <login-name>
+      password: <yourpassword>
+      schema: <your_snowflake_schema_name>
+      warehouse: <compute_wh>
+      role: <snowflake_role>
+  target: dev
+```
+- Please change the values of the above parameters enclosed in `<>` to fit your snowflake system.
+- To test if you have sucessfully established a connection to your snowflake cluster run the `dbt debug` command from the root of the `banxware_assignment` folder.
+
+In the `banxware_assigment` folder you will find a dbt project where you will build the below requirements in the `models` folder. 
+
+## Relevant dbt commands
+
+#### [dbt command reference](https://docs.getdbt.com/reference/dbt-commands):
+
+- `dbt deps` pulls and installs project dependencies
+- `dbt seed`  loads `csv` files into data warehouse
+- `dbt snapshot` executes "snapshot" jobs defined in a project
+- `dbt run` executes the models in a project (add `--full-refresh` to force refresh incremental models)
+- `dbt test` executes tests defined in a project
+- `dbt docs generate` generates documentation for a project
+- `dbt docs serve` starts local web server to view documentation (CLI version only)
+
+### Resources:
+- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
+- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
+- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
+- Find [dbt events](https://events.getdbt.com) near you
+- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
 
 ### Data Ingestion:
 
@@ -26,7 +67,11 @@ You have been provided with 2 csv files under the `data` folder:
 
 Both contain fictional data and are used for this assignment.
 
-Using any data ingestion tool of your choice, create a process to ingest the `sales.csv` into your Snowflake database into a table named `raw_sales_data`.
+Using any data ingestion tool of your choice, create a process to ingest the `sales.csv` and `customer.csv` into your Snowflake database into a table named `raw_sales_data` and `raw_customer_data`. 
+
+### Hint:
+
+[dbt seed](https://docs.getdbt.com/docs/build/seeds) might be able to make the process very easy!
 
 ### Data Transformation:
 
