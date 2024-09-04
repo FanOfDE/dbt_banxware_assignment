@@ -35,6 +35,7 @@ dbt_banxware_assignment:
   target: dev
 ```
 - Please change the values of the above parameters enclosed in `<>` to fit your snowflake system.
+
 - To test if you have sucessfully established a connection to your snowflake cluster run the `dbt debug` command from the root of the `dbt_banxware_assignment` folder.
 
 In the `banxware_assigment` folder you will find a dbt project where you will build the below requirements in the `models` folder. 
